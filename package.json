@@ -1,0 +1,33 @@
+{
+  "name": "alexa-lambda-typescript",
+  "version": "1.0.0",
+  "description": "A sample Alexa Skill handler with AWS Lambda functions in TypeScript and Serverless.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf .build .serverless",
+    "prebuild": "npm run clean && npm run test",
+    "build": "serverless package",
+    "predeploy": "npm run clean && npm run test",
+    "deploy": "serverless deploy",
+    "pretest": "npm run clean",
+    "test": "mocha"
+  },
+  "author": "Mihail Cristian Dumitru",
+  "license": "MIT",
+  "dependencies": {
+    "alexa-sdk": "^1.0.25"
+  },
+  "devDependencies": {
+    "typescript": "^2.9.2",
+    "@types/node": "^10.5.1",
+    "@types/aws-lambda": "^8.10.7",
+    "@types/alexa-sdk": "^1.1.1",
+    "@types/mocha": "^5.2.4",
+    "@types/chai": "^4.1.4",
+    "mocha": "^5.2.0",
+    "chai": "^4.1.2",
+    "ts-node": "^5.0.1",
+    "rimraf": "^2.6.2",
+    "serverless-plugin-typescript": "^1.1.5"
+  }
+}

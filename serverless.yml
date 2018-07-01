@@ -1,0 +1,25 @@
+service: serverless-sample
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: eu-west-1
+  memorySize: 128
+  timeout: 6
+
+plugins:
+  - serverless-plugin-typescript
+
+package:
+  excludeDevDependencies: true
+  include:
+    src/**/!(*.spec).js
+
+functions:
+  hello:
+    handler: src/hello/index.handler
+    description: Sample Alexa skill.
+    events:
+      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx-xx
+
+file: .serverless/output.json
