@@ -10,7 +10,8 @@
     "predeploy": "npm run clean && npm run test",
     "deploy": "serverless deploy",
     "pretest": "npm run clean",
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon"
   },
   "author": "Mihail Cristian Dumitru",
   "license": "MIT",
@@ -18,16 +19,21 @@
     "alexa-sdk": "^1.0.25"
   },
   "devDependencies": {
-    "typescript": "^2.9.2",
-    "@types/node": "^10.5.1",
-    "@types/aws-lambda": "^8.10.7",
     "@types/alexa-sdk": "^1.1.1",
-    "@types/mocha": "^5.2.4",
+    "@types/aws-lambda": "^8.10.7",
+    "@types/aws-lambda-mock-context": "^1.0.3",
     "@types/chai": "^4.1.4",
-    "mocha": "^5.2.0",
+    "@types/express": "^4.16.0",
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.1",
     "chai": "^4.1.2",
-    "ts-node": "^5.0.1",
+    "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.2",
-    "serverless-plugin-typescript": "^1.1.5"
+    "serverless-plugin-typescript": "^1.1.5",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.9.2",
+    "aws-lambda-mock-context": "^3.1.1",
+    "nodemon": "^1.17.5"
   }
 }

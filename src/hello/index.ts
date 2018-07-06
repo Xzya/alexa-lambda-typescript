@@ -12,7 +12,7 @@ const handlers: Alexa.Handlers<Alexa.Request> = {
     },
 };
 
-export const handler = (event: Alexa.RequestBody<Alexa.Request>, context: Alexa.Context, callback: () => void) => {
+export const handler = (event: Alexa.RequestBody<Alexa.Request>, context: Alexa.Context, callback?: (err: any, response: any) => void) => {
     const alexa = Alexa.handler(event, context);
     alexa.resources = {};
     alexa.registerHandlers(handlers);

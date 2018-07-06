@@ -50,6 +50,32 @@ service: serverless-sample
       - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx-xx
 ```
 
+## Local development
+
+During development, it's a pain to always have to deploy your lambda function to see your changes.
+There is a better way, you can connect Alexa to your local environment instead of Lambda, without having to make any modifications to your Lambda functions.
+
+1. First, we will need an HTTPS endpoint. You can use [ngrok](https://ngrok.com/) for this (it's free), or any other similar tools.
+
+```bash
+$ ./ngrok http 3980 
+```
+
+This will give you an HTTPS endpoint which will proxy all requests to your local server (something like `https://84f7599f.ngrok.io`).
+
+2. Go to [your skill's dashboard](https://developer.amazon.com/alexa/console) at the Endpoint section.
+
+- Instead of `AWS Lambda ARN`, select `HTTPS`.
+- Now copy the https url from `ngrok` and paste it in the `Default Region` field.
+- For the `SSL certificate type`, make sure you select `My development endpoint is a sub-domain of a domain that has a wildcard certificate from a certificate authority`, otherwise it will not work.
+- Save the changes in the Alexa developer console.
+
+3. Inside the project, run `npm start`. This will start a local http server using `nodemon` which will serve your lambda function.
+
+Now, Alexa will be connected to your server, so you don't need to deploy to Lambda anymore.
+
+Since the process is using `nodemon`, making any changes to the code will automatically restart the server, so your changes will be reflected to Alexa immediately.
+
 ## Developer tasks
 
 For more info, check `package.json` and [the aws-lambda-typescript documentation](https://github.com/balassy/aws-lambda-typescript#developer-tasks).
