@@ -1,24 +1,19 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import * as Alexa from "alexa-sdk";
 import { AddressInfo } from "net";
-import context = require("aws-lambda-mock-context");
+import { LambdaHandler } from "ask-sdk-core/dist/skill/factory/BaseSkillFactory";
+import { RequestEnvelope } from "ask-sdk-model";
 
 import { handler as helloHandler } from "./hello";
 
-function CreateHandler(handler: (event: Alexa.RequestBody<Alexa.Request>, context: Alexa.Context, callback?: (err: any, response: any) => void) => void): express.RequestHandler {
+function CreateHandler(handler: LambdaHandler): express.RequestHandler {
     return (req, res) => {
-        const ctx = context();
-
-        handler(req.body, ctx);
-
-        ctx.Promise
-            .then(resp => {
-                return res.status(200).json(resp);
-            })
-            .catch(err => {
+        handler(req.body as RequestEnvelope, null, (err, result) => {
+            if (err) {
                 return res.status(500).send(err);
-            });
+            }
+            return res.status(200).json(result);
+        });
     };
 }
 
